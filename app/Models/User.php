@@ -11,6 +11,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -19,8 +20,15 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'sex',
+        'address',
         'password',
     ];
+
+    public function orders() {
+        return $this->hasMany('App\Models\Order', 'order_id', 'id');
+      }
 
     /**
      * The attributes that should be hidden for arrays.
